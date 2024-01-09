@@ -1,56 +1,40 @@
-import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { SplashScreen, Stack } from 'expo-router';
-import { useEffect } from 'react';
-import { useColorScheme } from 'react-native';
+import { StyleSheet } from "react-native";
+import { Slot, Stack } from "expo-router";
+import { useFonts } from "expo-font";
+import { useCallback } from "react";
+import * as SplashScreen from "expo-splash-screen";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { StatusBar } from "expo-status-bar";
 
-export {
-  // Catch any errors thrown by the Layout component.
-  ErrorBoundary,
-} from 'expo-router';
+export default function _layout() {
+    const [fontsLoaded] = useFonts({
+        AsapRegular: require("../node_modules/@expo-google-fonts/asap/Asap_400Regular.ttf"),
+        AsapBold: require("../node_modules/@expo-google-fonts/asap/Asap_700Bold.ttf"),
+        BebasNeue: require("../node_modules/@expo-google-fonts/bebas-neue/BebasNeue_400Regular.ttf"),
+    });
 
-export const unstable_settings = {
-  // Ensure that reloading on `/modal` keeps a back button present.
-  initialRouteName: '(tabs)',
-};
+    const onLayoutView = useCallback(async () => {
+        if (fontsLoaded) {
+            await SplashScreen.hideAsync();
+        }
+    }, [fontsLoaded]);
 
-// Prevent the splash screen from auto-hiding before asset loading is complete.
-SplashScreen.preventAutoHideAsync();
-
-export default function RootLayout() {
-  const [loaded, error] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-    ...FontAwesome.font,
-  });
-
-  // Expo Router uses Error Boundaries to catch errors in the navigation tree.
-  useEffect(() => {
-    if (error) throw error;
-  }, [error]);
-
-  useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync();
+    if (!fontsLoaded) {
+        return null;
     }
-  }, [loaded]);
 
-  if (!loaded) {
-    return null;
-  }
-
-  return <RootLayoutNav />;
+    return (
+        <>
+            <SafeAreaView onLayout={onLayoutView} style={styles.appContainer}>
+                <Slot />
+            </SafeAreaView>
+            <StatusBar style="inverted" />
+        </>
+    );
 }
-
-function RootLayoutNav() {
-  const colorScheme = useColorScheme();
-
-  return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
-      </Stack>
-    </ThemeProvider>
-  );
-}
+const styles = StyleSheet.create({
+    appContainer: {
+        flex: 1,
+        backgroundColor: "white",
+    },
+});
