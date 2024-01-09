@@ -1,4 +1,4 @@
-> <b>NOTE: The design was no created by me.</b></br>
+> <b>NOTE: The design was not created by me.</b></br>
 > The original UI Kit can be found [here](https://www.figma.com/community/file/1307732311613727730)
 
 ## What i'm using
