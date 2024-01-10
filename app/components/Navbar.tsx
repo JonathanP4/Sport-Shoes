@@ -1,6 +1,6 @@
 import { StyleSheet, View, Image } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import SearchBar from "./SearchBar";
+import SearchBar from "./UI/SearchBar";
 
 export default function Navbar() {
     return (

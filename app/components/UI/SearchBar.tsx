@@ -1,7 +1,7 @@
 import { StyleSheet, TextInput, View } from "react-native";
-import { Colors } from "../../constants/Colors";
+import { Colors } from "../../../constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
-import PrimaryButton from "./UI/PrimaryButton";
+import PrimaryButton from "./PrimaryButton";
 
 export default function SearchBar() {
     return (
