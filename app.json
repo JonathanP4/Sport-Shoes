@@ -1,7 +1,7 @@
 {
     "expo": {
-        "name": "navigation",
-        "slug": "navigation",
+        "name": "Sport Shoes",
+        "slug": "sport-shoes",
         "version": "1.0.0",
         "orientation": "portrait",
         "icon": "./assets/images/icon.png",
@@ -36,7 +36,11 @@
         "extra": {
             "router": {
                 "origin": false
+            },
+            "eas": {
+                "projectId": "af11c621-df23-4214-b794-881cd26c236c"
             }
-        }
+        },
+        "owner": "john404"
     }
 }
