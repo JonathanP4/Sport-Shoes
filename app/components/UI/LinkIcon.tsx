@@ -1,7 +1,6 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { View } from "react-native";
 import { Colors } from "../../../constants/Colors";
-import { Link, LinkProps, usePathname } from "expo-router";
+import { Link, usePathname } from "expo-router";
 import { useEffect, useState } from "react";
 
 type Props = {

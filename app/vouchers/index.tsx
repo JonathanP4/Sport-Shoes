@@ -1,8 +1,9 @@
-import { View, Text } from "react-native";
 import BottomNavigation from "../components/UI/BottomNavigation";
 import { Vouchers } from "../../data/Vouchers";
 import Voucher from "./components/Voucher";
 import { DateTime } from "luxon";
+import Title from "../components/UI/Title";
+import Card from "../components/UI/Card";
 
 export default function index() {
     function checkVoucher(v: VoucherItem) {
@@ -17,10 +18,8 @@ export default function index() {
 
     return (
         <>
-            <View className="px-6 py-2 flex-1">
-                <Text className="font-BebasNeue text-xl mb-4">
-                    Active Voucher
-                </Text>
+            <Card>
+                <Title cssClass="mb-4">Active Voucher</Title>
                 {Vouchers.map((v) => {
                     const isValid = checkVoucher(v);
                     return (
@@ -30,9 +29,7 @@ export default function index() {
                     );
                 })}
 
-                <Text className="font-BebasNeue text-xl my-4">
-                    Expired Voucher
-                </Text>
+                <Title cssClass="my-4">Expired Voucher</Title>
                 {Vouchers.map((v) => {
                     const isValid = checkVoucher(v);
 
@@ -42,7 +39,7 @@ export default function index() {
                         )
                     );
                 })}
-            </View>
+            </Card>
             <BottomNavigation />
         </>
     );

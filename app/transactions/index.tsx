@@ -4,16 +4,21 @@ import SearchBar from "../components/UI/SearchBar";
 import { FlatList } from "react-native-gesture-handler";
 import { searchByData } from "../../data/SearchByItems";
 import SearchByItem from "./components/SearchByItem";
+import Title from "../components/UI/Title";
+import Card from "../components/UI/Card";
+import Filter from "../components/UI/Filter";
+
 export default function index() {
     return (
         <>
-            <View className="px-6 py-2 flex-1">
-                <Text className="font-BebasNeue text-xl">TRANSACTION</Text>
+            <Card>
+                <Title>TRANSACTION</Title>
                 <View className="my-4">
                     <SearchBar />
                 </View>
-                <View className="py-4">
-                    <Text className="font-BebasNeue text-xl">Search By</Text>
+                <View className="py-4 flex-row justify-between items-center">
+                    <Title>Search By</Title>
+                    <Filter />
                 </View>
                 <View className="flex-1">
                     <FlatList
@@ -22,7 +27,7 @@ export default function index() {
                         keyExtractor={(item) => item.id}
                     />
                 </View>
-            </View>
+            </Card>
             <BottomNavigation />
         </>
     );
